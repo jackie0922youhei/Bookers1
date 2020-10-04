@@ -24,19 +24,19 @@
       <tbody>
         <tr>
           <td>
-            <%= link_to book.title, book_path(book) %>
+            <%= book.title %>
           </td>
           <td>
-            <%= link_to book.body, book_path(book) %>
+            <%= book.body %>
           </td>
           <td>
-            <%= link_to "Show", %>
+            <%= link_to "Show", book_path(book.id) %>
           </td>
           <td>
-            <%= link_to "E", %>
+            <%= link_to "Edit", edit_book_path(book.id) %>
           </td>
           <td>
-            <%= link_to "Destroy", destroy_book_path(@book.id), method: :delete, "date-confirm" => "Are you sure?" %>
+            <%= link_to "Destroy", book_path(book.id), method: :delete, "data-confirm" => "Are you sure?" %>
           </td>
         </tr>
       </tbody>
@@ -45,6 +45,17 @@
     </table>
 
     <h2>New book</h2>
+<%= form_with model:@book, local:true do |f| %>
+
+  <h4>Title</h4>
+  <%= f.text_field :title %>
+
+  <h4>Body</h4>
+  <%= f.text_area :body %>
+
+  <%= f.submit 'Create Book' %>
+
+<% end %>
   </body>
 
 </html>
